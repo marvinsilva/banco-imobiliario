@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 
-""" This software was developed with the objective of searching for the cheapest
-    and best quality hotel in a hotel chain from a client reservation request.
-    Author: Marcus Vinicius Laurindo da Silva
-    Date: October 24th, 2019
+""" Esta aplicação tem como objetivo simular o jogo banco imobiliário e retornar os dados
+    resultantes conforme parâmetros de execução
+    Data: 03 de Fevereiro de 2020
     Python 3.7.2
 """
 
@@ -28,7 +27,7 @@ mensagem_ajuda = f'\nUso: python {file_name} [opções] ... \
                     \nPara testar use o seguinte comando no diretório raiz deste projeto:\
                     \n$ python -m unittest discover'
 
-def command_options(argument):
+def opcoes_comando(argument):
     """ Parses the command line options and the parameter list
     """
     try:
@@ -60,7 +59,7 @@ def command_options(argument):
 
 if(__name__ == "__main__"):
 
-    if command_options(sys.argv):
+    if opcoes_comando(sys.argv):
 
         # Paramêtros para simulação do jogo banco imobiliário
         perfis = ['impulsivo', 'exigente', 'cauteloso', 'aleatorio']
