@@ -118,8 +118,8 @@ def tratamento_de_dados(dados, perfis, numero_de_simulacoes):
     partidas_terminam_regular = dict_auxiliar.get('regular')
 
     resultado = {
-        'partidas terminam timeout': partidas_terminam_timeout,
-        'partidas terminam regular': partidas_terminam_regular,
+        'partidas terminadas timeout': partidas_terminam_timeout,
+        'partidas terminadas regular': partidas_terminam_regular,
         'media de turnos por partida': media_de_rodadas,
         'perfil mais vitorioso': f'{perfil_mais_vitorioso} ({maior_numero_vitorias} vitorias)',
         'vitorias por perfil': porcent_vitorias_por_perfil
