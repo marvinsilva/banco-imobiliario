@@ -89,3 +89,38 @@ def monopoly(perfis, quantidade_posicoes_tabuleiro=20, numero_de_simulacoes=10, 
             })
 
     return dados
+
+def tratamento_de_dados(dados, perfis, numero_de_simulacoes):
+    dict_auxiliar = {}
+    numero_rodadas_total = 0
+    for item in dados:
+        numero_rodadas_total += item.get('rodada')
+        for valor in item.values():
+            if isinstance(valor, str):
+                contagem = dict_auxiliar.get(valor, 0) + 1
+                dict_auxiliar[valor] = contagem
+
+    maior_numero_vitorias = 0
+    perfil_mais_vitorioso = str()
+    porcent_vitorias_por_perfil = {}
+    for item in dict_auxiliar.keys():
+        if item in perfis:
+            # Porcentagem de vitorias por comportamento dos jogadores
+            porcent_vitorias_por_perfil[item] = f'{round((dict_auxiliar.get(item) / numero_de_simulacoes) * 100, 2)}%'
+            if dict_auxiliar.get(item) > maior_numero_vitorias:
+                maior_numero_vitorias = dict_auxiliar.get(item)
+                perfil_mais_vitorioso = item
+
+    media_de_rodadas = round(numero_rodadas_total / numero_de_simulacoes)
+    partidas_terminam_timeout = dict_auxiliar.get('timeout')
+    partidas_terminam_regular = dict_auxiliar.get('regular')
+
+    resultado = {
+        'partidas terminam timeout': partidas_terminam_timeout,
+        'partidas terminam regular': partidas_terminam_regular,
+        'media de turnos por partida': media_de_rodadas,
+        'perfil mais vitorioso': f'{perfil_mais_vitorioso} ({maior_numero_vitorias} vitorias)',
+        'vitorias por perfil': porcent_vitorias_por_perfil
+    }
+
+    return resultado
