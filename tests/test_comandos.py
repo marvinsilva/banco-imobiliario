@@ -4,7 +4,6 @@ from src.comandos import opcoes_comando
 
 class TestComandos(TestCase):
 
-
     def test_entrada_sem_opcao_deve_sair_e_exibir_mensagem_erro_com_uso(self):
         with self.assertRaises(SystemExit):
             opcoes_comando('', 'nome_arquivo')

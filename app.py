@@ -18,8 +18,6 @@ if(__name__ == "__main__"):
 
     if opcoes_comando(sys.argv, nome_arquivo):
 
-        print(sys.argv)
-
         # Paramêtros para simulação do jogo banco imobiliário
         perfis = ['impulsivo', 'exigente', 'cauteloso', 'aleatorio']
         quantidade_posicoes_tabuleiro = 20
