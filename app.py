@@ -12,11 +12,13 @@ import os
 from src.principal import executar_simulacoes, tratamento_de_dados
 from src.comandos import opcoes_comando
 
-file_name = os.path.basename(__file__)
+nome_arquivo = os.path.basename(__file__)
 
 if(__name__ == "__main__"):
 
-    if opcoes_comando(sys.argv, file_name):
+    if opcoes_comando(sys.argv, nome_arquivo):
+
+        print(sys.argv)
 
         # Paramêtros para simulação do jogo banco imobiliário
         perfis = ['impulsivo', 'exigente', 'cauteloso', 'aleatorio']

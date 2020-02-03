@@ -7,11 +7,11 @@ __version__ = "1.0.0"
 __status__ = "Production"
 
 
-def opcoes_comando(argument, file_name):
+def opcoes_comando(argument, nome_arquivo):
     """ Função responsável por tratar os parâmetros do comando de entrada
     """
 
-    mensagem_ajuda = f'\nUso: python {file_name} [opções] ... \
+    mensagem_ajuda = f'\nUso: python {nome_arquivo} [opções] ... \
                         \n[-e --exec | -v --version | -h --help]\
                         \nopçoes e argumentoss:\
                         \n-e   :   executa as simulações do jogo banco imobiliário \
@@ -23,7 +23,7 @@ def opcoes_comando(argument, file_name):
     try:
         opts, args = getopt.getopt(argument[1:], "evh", ["exec=", "version", "help"])
         if len(argument) < 2 or not opts:
-            print(f'Erro: uso python {file_name} <opcoes -e -h -v>')
+            print(f'Erro: uso python {nome_arquivo} <opcoes -e -h -v>')
             sys.exit(2)
         for opt, arg in opts:
             if opt in ("-e", "--exec"):
