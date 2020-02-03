@@ -1,3 +1,51 @@
+import random
+from src.modelos import Jogador, Propriedade
+
+def jogada(jogadores, jogador, tabuleiro):
+    if jogador.saldo > 0:
+        numero_sorteado_dado = random.randrange(1, 7)
+        jogador.posicao += numero_sorteado_dado
+        if jogador.posicao > 20:
+            jogador.posicao -= 20
+            jogador.saldo += 100
+        elif jogador.posicao == 20:
+            jogador.posicao = 1
+            jogador.saldo += 100
+        propriedade = tabuleiro[jogador.posicao]
+
+        # Se a propriedade não possui proprietario
+        if not propriedade.proprietario:
+            if jogador.perfil == 'impulsivo':
+                if jogador.saldo >= propriedade.venda:
+                    jogador.compra_propriedade(propriedade)
+                    propriedade.proprietario = jogador.perfil
+            elif jogador.perfil == 'exigente':
+                if jogador.saldo >= propriedade.venda and propriedade.aluguel > 50:
+                    jogador.compra_propriedade(propriedade)
+                    propriedade.proprietario = jogador.perfil
+            elif jogador.perfil == 'cauteloso':
+                if jogador.saldo >= propriedade.venda + 80:
+                    jogador.compra_propriedade(propriedade)
+                    propriedade.proprietario = jogador.perfil
+            elif jogador.perfil == 'aleatorio':
+                probabilidade = random.randrange(1, 101)
+                if jogador.saldo >= propriedade.venda and probabilidade > 50:
+                    jogador.compra_propriedade(propriedade)
+                    propriedade.proprietario = jogador.perfil
+        # Se possui proprietario verifica se não é o mesmo jogador
+        else:
+            if jogador.perfil != propriedade.proprietario:
+                jogador.saldo -= propriedade.aluguel
+                for pos in range(len(jogadores)):
+                    if jogadores[pos].perfil == propriedade.proprietario:
+                        jogadores[pos].saldo += propriedade.aluguel
+            # Valida se jogador possui saldo para continuar na partida
+            if jogador.saldo <= 0:
+                if jogador.propriedades:
+                    for item in jogador.propriedades:
+                        tabuleiro[item].proprietario = None
+                jogador.propriedades = []
+
 def monopoly(perfis, quantidade_posicoes_tabuleiro=20, numero_de_simulacoes=10, numero_maximo_rodadas=1000):
     dados = []
     # Inicio das simulacoes
