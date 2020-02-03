@@ -171,3 +171,4 @@ if __name__ == '__main__':
     resultado = tratamento_de_dados(dados, perfis, numero_de_simulacoes)
     print(f'\nResultado para {numero_de_simulacoes} simulacoes:\n')
     [print(f'{chave}: {valor}') for chave, valor in resultado.items()]
+

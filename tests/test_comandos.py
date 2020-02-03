@@ -27,3 +27,4 @@ class TestComandos(TestCase):
         arg = ['app.py', '-v']
         with self.assertRaises(SystemExit):
             opcoes_comando(arg, 'nome_arquivo')
+
