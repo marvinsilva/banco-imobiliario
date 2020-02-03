@@ -1,7 +1,58 @@
 import random
 from src.modelos import Jogador, Propriedade
 
+
+def tratamento_de_dados(dados, perfis, numero_de_simulacoes):
+    """
+    Função retorna os dados tratados das simulações do jogo
+    :param dados: list
+    :param perfis: list
+    :param numero_de_simulacoes: int
+    :return: dict
+    """
+    dict_auxiliar = {}
+    numero_rodadas_total = 0
+    for item in dados:
+        numero_rodadas_total += item.get('rodada')
+        for valor in item.values():
+            if isinstance(valor, str):
+                contagem = dict_auxiliar.get(valor, 0) + 1
+                dict_auxiliar[valor] = contagem
+
+    maior_numero_vitorias = 0
+    perfil_mais_vitorioso = str()
+    porcent_vitorias_por_perfil = {}
+    for item in dict_auxiliar.keys():
+        if item in perfis:
+            # Porcentagem de vitorias por comportamento dos jogadores
+            porcent_vitorias_por_perfil[item] = f'{round((dict_auxiliar.get(item) / numero_de_simulacoes) * 100, 2)}%'
+            if dict_auxiliar.get(item) > maior_numero_vitorias:
+                maior_numero_vitorias = dict_auxiliar.get(item)
+                perfil_mais_vitorioso = item
+
+    media_de_rodadas = round(numero_rodadas_total / numero_de_simulacoes)
+    partidas_terminam_timeout = dict_auxiliar.get('timeout')
+    partidas_terminam_regular = dict_auxiliar.get('regular')
+
+    resultado = {
+        'partidas terminadas timeout': partidas_terminam_timeout,
+        'partidas terminadas regular': partidas_terminam_regular,
+        'media de turnos por partida': media_de_rodadas,
+        'perfil mais vitorioso': f'{perfil_mais_vitorioso} ({maior_numero_vitorias} vitorias)',
+        'vitorias por perfil': porcent_vitorias_por_perfil
+    }
+
+    return resultado
+
+
 def jogada(jogadores, jogador, tabuleiro):
+    """
+    Função executa a jogada de um jogador por vez por rodada
+    :param jogadores: list
+    :param jogador: list item
+    :param tabuleiro: list
+    :return: None
+    """
     if jogador.saldo > 0:
         numero_sorteado_dado = random.randrange(1, 7)
         jogador.posicao += numero_sorteado_dado
@@ -47,7 +98,15 @@ def jogada(jogadores, jogador, tabuleiro):
                 jogador.propriedades = []
 
 
-def monopoly(perfis, quantidade_posicoes_tabuleiro=20, numero_de_simulacoes=10, numero_maximo_rodadas=1000):
+def executar_simulacoes(perfis, quantidade_posicoes_tabuleiro=20, numero_de_simulacoes=10, numero_maximo_rodadas=1000):
+    """
+    Função executa simulações de um jogo de banco imobiliário conforme parametros
+    :param perfis: list
+    :param quantidade_posicoes_tabuleiro: int
+    :param numero_de_simulacoes: int
+    :param numero_maximo_rodadas: int
+    :return: list
+    """
     dados = []
     # Inicio das simulacoes
     for simulacao in range(1, numero_de_simulacoes + 1):
@@ -92,43 +151,10 @@ def monopoly(perfis, quantidade_posicoes_tabuleiro=20, numero_de_simulacoes=10, 
     return dados
 
 
-def tratamento_de_dados(dados, perfis, numero_de_simulacoes):
-    dict_auxiliar = {}
-    numero_rodadas_total = 0
-    for item in dados:
-        numero_rodadas_total += item.get('rodada')
-        for valor in item.values():
-            if isinstance(valor, str):
-                contagem = dict_auxiliar.get(valor, 0) + 1
-                dict_auxiliar[valor] = contagem
-
-    maior_numero_vitorias = 0
-    perfil_mais_vitorioso = str()
-    porcent_vitorias_por_perfil = {}
-    for item in dict_auxiliar.keys():
-        if item in perfis:
-            # Porcentagem de vitorias por comportamento dos jogadores
-            porcent_vitorias_por_perfil[item] = f'{round((dict_auxiliar.get(item) / numero_de_simulacoes) * 100, 2)}%'
-            if dict_auxiliar.get(item) > maior_numero_vitorias:
-                maior_numero_vitorias = dict_auxiliar.get(item)
-                perfil_mais_vitorioso = item
-
-    media_de_rodadas = round(numero_rodadas_total / numero_de_simulacoes)
-    partidas_terminam_timeout = dict_auxiliar.get('timeout')
-    partidas_terminam_regular = dict_auxiliar.get('regular')
-
-    resultado = {
-        'partidas terminadas timeout': partidas_terminam_timeout,
-        'partidas terminadas regular': partidas_terminam_regular,
-        'media de turnos por partida': media_de_rodadas,
-        'perfil mais vitorioso': f'{perfil_mais_vitorioso} ({maior_numero_vitorias} vitorias)',
-        'vitorias por perfil': porcent_vitorias_por_perfil
-    }
-
-    return resultado
-
-
 if __name__ == '__main__':
+
+
+    # Paramêtros para simulação do jogo banco imobiliário
     perfis = ['impulsivo', 'exigente', 'cauteloso', 'aleatorio']
     quantidade_posicoes_tabuleiro = 20
     numero_de_simulacoes = 300
@@ -137,7 +163,7 @@ if __name__ == '__main__':
     # Ordem aleatorio de perfis para inicio do jogo
     random.shuffle(perfis)
 
-    dados = monopoly(perfis,
+    dados = executar_simulacoes(perfis,
                      quantidade_posicoes_tabuleiro,
                      numero_de_simulacoes,
                      numero_maximo_rodadas)

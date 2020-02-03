@@ -1,4 +1,8 @@
 class Propriedade:
+    """ Classe de modelos de propriedades do jogo banco imobiliário
+    """
+
+
     def __init__(self, posicao, venda, aluguel, proprietario):
         self.posicao = posicao
         self.venda = venda
@@ -7,6 +11,10 @@ class Propriedade:
 
 
 class Jogador:
+    """ Classe de modelos de jogadores do jogo banco imobiliário
+    """
+
+
     def __init__(self, perfil):
         self.perfil = perfil
         self.saldo = 300
@@ -21,5 +29,4 @@ class Jogador:
 
     def recebe_aluguel(self, aluguel):
         self.saldo += aluguel
-
 
