@@ -97,8 +97,7 @@ def jogada(jogadores, jogador, tabuleiro):
                         tabuleiro[item].proprietario = None
                 jogador.propriedades = []
 
-
-def executar_simulacoes(perfis, quantidade_posicoes_tabuleiro=20, numero_de_simulacoes=10, numero_maximo_rodadas=1000):
+def executar_simulacoes(perfis, quantidade_posicoes_tabuleiro=20, numero_de_simulacoes=300, numero_maximo_rodadas=1000):
     """
     Função executa simulações de um jogo de banco imobiliário conforme parametros
     :param perfis: list
@@ -124,6 +123,7 @@ def executar_simulacoes(perfis, quantidade_posicoes_tabuleiro=20, numero_de_simu
                     eliminados.append(jogadores[pos].perfil)
                 # Inicio da jogada na rodada
                 jogada(jogadores, jogadores[pos], tabuleiro)
+
             # Partida encerrada com mais de 2 jogadores eliminados
             if len(eliminados) > 2:
                 vencedor = [perfil for perfil in perfis if perfil not in eliminados]

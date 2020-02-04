@@ -8,7 +8,7 @@ class TestComandos(TestCase):
         with self.assertRaises(SystemExit):
             opcoes_comando('', 'nome_arquivo')
 
-    def test_entrada_sem_nome_arquivo_deve_lancar_type_error(self):
+    def test_entrada_sem_nome_do_arquivo_deve_lancar_type_error(self):
         with self.assertRaises(TypeError):
             opcoes_comando('python app -e')
 
