@@ -15,7 +15,8 @@ Para executar este programa é necessário apenas ter o Python 3.7 instalado
 ## Desenvolvimento do sistema
 
 O software foi desenvolvido utilizando a linguagem Python na versão 3.7.2 apenas com bibliotecas nativas da linguagem (built in).
-A documentação do Python pode ser encontrada em: https://docs.python.org/3.7/ e suas funções buit-in: https://docs.python.org/3.7/library/functions.html
+
+A documentação do [Python] (python https://docs.python.org/3.7/) fornece mais informações sobre a linguagem e suas funções [buit-in] (https://docs.python.org/3.7/library/functions.html)
 
 ## Como utilizar
 
@@ -37,7 +38,7 @@ Para executar os testes de software utilizar o seguinte comando a partir do dire
 ```
 $ python -m unittest discover
 ```
-O resultado da execução deve sert exibido no Console conforme exemplo:
+O resultado da execução deve ser exibido no Console conforme exemplo:
 ```
 Resultado para 300 simulacoes:
 
