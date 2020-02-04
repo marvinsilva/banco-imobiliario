@@ -37,4 +37,15 @@ Para executar os testes de software utilizar o seguinte comando a partir do dire
 ```
 $ python -m unittest discover
 ```
+O resultado da execução deve sert exibido no Console conforme exemplo:
+```
+Resultado para 300 simulacoes:
+
+partidas terminadas timeout: 243
+partidas terminadas regular: 57
+media de turnos por partida: 841
+perfil mais vitorioso: cauteloso (120 vitorias)
+vitorias por perfil: {'impulsivo': '37.0%', 'cauteloso': '40.0%', 'aleatorio': '13.67%', 'exigente': '9.33%'}
+```
+Caso esteja utilizando uma IDE, como Pycharm, rodar o arquivo 'principal.py' disponível no diretório 'src' do projeto.
 Mais informações sobre este software e descrição do desafio podem ser encontradas no repositório 'docs' deste projeto.
