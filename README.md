@@ -7,16 +7,18 @@ Tendo como resultado as seguintes informações:
 - Quantos turnos em média demora uma partida;
 - Qual a porcentagem de vitórias por comportamento dos jogadores;
 - Qual o comportamento que mais vence.
+___
 
 ## Requisitos de software
 
 Para executar este programa é necessário apenas ter o Python 3.7 instalado
+___
 
 ## Desenvolvimento do sistema
 
-O software foi desenvolvido utilizando a linguagem Python na versão 3.7.2 apenas com bibliotecas nativas da linguagem (built in).
-
-A documentação do [Python](https://docs.python.org/3.7/) fornece mais informações sobre a linguagem e suas funções [buit-in](https://docs.python.org/3.7/library/functions.html)
+O software foi desenvolvido utilizando a linguagem Python na versão 3.7.2 apenas com bibliotecas nativas da linguagem.
+A documentação do [Python](https://docs.python.org/3.7/) fornece mais informações sobre a linguagem e suas funções [buit-in](https://docs.python.org/3.7/library/functions.html).
+___
 
 ## Como utilizar
 
@@ -48,5 +50,7 @@ media de turnos por partida: 841
 perfil mais vitorioso: cauteloso (120 vitorias)
 vitorias por perfil: {'impulsivo': '37.0%', 'cauteloso': '40.0%', 'aleatorio': '13.67%', 'exigente': '9.33%'}
 ```
-Caso esteja utilizando uma IDE, como Pycharm, rodar o arquivo 'principal.py' disponível no diretório 'src' do projeto.
+
+* Caso esteja utilizando uma IDE, como Pycharm, rodar o arquivo 'principal.py' disponível no diretório 'src' do projeto.
+
 Mais informações sobre este software e descrição do desafio podem ser encontradas no repositório 'docs' deste projeto.
